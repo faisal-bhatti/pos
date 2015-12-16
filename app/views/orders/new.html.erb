@@ -16,6 +16,25 @@
 
 
   $(document).ready(function(){
+      sr.data.search_pos.current_page = 1;
+      $('#search').show();
+      // $('#search').css({'z-index':'1010'});
+      $('#search_keywords').val("");
+      sr.fn.focus.set($('#search_keywords'));
+      var inp = $('<input type="text" id="search_keywords" name="keywords" class="keyboardable" value="" />');
+      inp.keyup(function(e) {
+        if (e.keyCode == 13) {
+          sr.fn.search_pos.go('#search_keywords');
+          inp.select();
+        }
+      })
+      $('.search-div-input-constrainer').html(inp);
+      sr.fn.onscreen_keyboard.make(inp);
+      $('#search').height($(window).height() * 0.5);
+      // $('#search').width($(window).width() * 0.35);
+      // $('.search-results').height($('#search').height() - 136);
+      inp.select();
+      // shared.helpers.center($('#search'));
     thisTime = new Date()
     hours = thisTime.getHours()
     minutes = thisTime.getMinutes()
@@ -44,16 +63,57 @@
 <%= render :partial => "buttons/popup", :layout => false %> 
 
 <div class='clear'></div>
+<table width="100%">
+  <tr>
+  <td width="50%">
+    <div id="search" class="search">
+<table >
+  <tr>
+    <td valign="top" width="80%">
+      <div class="search-div-input-constrainer">
+        <!-- search.js will dynamically add input field here -->
+      </div>
+    </td>
+    <td valign="top">
+      <select id="search_models">
+        <% searchable_models.each do |m| %>
+          <option value='<%= m[1] %>'><%= m[0] %></option>
+        <% end %>
+      </select>
+    </td>
+    <td valign="top">
+      <div class="button-up" onmousedown="sr.fn.search_pos.go()">
+        <%= t("views.forms.search") %>
+      </div>
+    </td>
+  </tr>
+</table>
+  <div id="search_results" class="search-results">
+  </div>
+  <br />
+  <div id="" align="right" class="button-row">
+    <div class="button-confirm-left" onmousedown="sr.fn.search_pos.displayPreviousPage();"><%= raw I18n.t("views.pagination.previous") %></div>
+    <div class="spacer">&nbsp;</div>
+    <div class="button-confirm" onmousedown="sr.fn.search_pos.displayNextPage();"><%= raw I18n.t("views.pagination.next") %></div>
+    <!-- <div class="button-cancel" onmousedown="sr.fn.search_pos.hidePopup();"><%= raw I18n.t("menu.done") %></div> -->
+  </div>
+</div> 
 
-<div id="pos-table-left-column-items" class="pos-table-left-column-items"></div>
 
-<%= render :partial => "shared/search" %>
+  </td>
+  <td width="50%" style="vertical-align: top;">
+  <div id="pos-table-left-column-items" class="pos-table-left-column-items" ></div>
+  </td>
+  </tr>
+
+<%#= render :partial => "shared/search" %>
 <%= render :partial => "complete_order" %>
 <%= render :partial => "last_orders" %>
 
-<div id="clock-div" style="font-size: 100px;">
+
+<!-- <div id="clock-div" style="font-size: 100px;"> -->
 </div>
-<div style="font-size: 30px;">
+<!-- <div style="font-size: 30px;">
   <% @date = Time.now %>
   <%= @date.strftime("%B #{@date.day.ordinalize}, %Y") %>
-</div>
+</div> -->

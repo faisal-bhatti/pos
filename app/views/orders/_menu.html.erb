@@ -6,7 +6,7 @@
   <!-- <div id="configuration_button" onclick="sr.fn.pos_core.showOrderOptions();" class="input pos-button">
     <%= raw salor_icon(:wrench, {:class => "no-select",:style => "cursor:pointer;"},32, t("menu.configuration")) %>
   </div>  -->
-  <div id="show_customers" onclick="$('#last_orders').show();" class="input pos-button">
+  <!-- <div id="show_customers" onclick="$('#last_orders').show();" class="input pos-button">
     <%= raw salor_icon(:pin, {:class => "no-select",:style => "cursor:pointer;"},32, t("menu.last_orders")) %>
   </div>
   <div id="show_butons" onclick="$('#buttons').show();" class="input pos-button">
@@ -14,7 +14,7 @@
   </div>
   <div id="show_search" onclick="sr.fn.search_pos.showPopup();" class="input pos-button">
     <%= raw salor_icon(:search, {:class => "no-select",:style => "cursor:pointer;"},32, t("menu.search")) %>
-  </div>
+  </div> -->
   <% if not @current_register.scale.blank? then %>
     <div class="pos-button" align="center" onmousedown="weigh_last_item();">
       <%= raw salor_icon(:weight,{:class => "no-select",:style => "cursor:pointer;"},32, t("menu.weigh")) %>
@@ -30,7 +30,7 @@
   
   
   
-  <br>
+  <!-- <br> -->
   <div class="pos-order-total" id="pos_order_total" style="margin-left: -9%;"></div>
   <!-- <input type="text" class="keyboard-input keyboardable" id="main_sku_field" name="keyboard_input" value="" style="background: white;color:black;"/> -->
 </div>
